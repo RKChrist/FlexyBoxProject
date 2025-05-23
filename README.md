@@ -26,6 +26,7 @@ https://www.figma.com/design/BPYVMBj1ZgYK2U4gp218HU/Flexybook---DevTest?node-id=
 * **Responsive design**: Siden justerer automatisk font og layout responsivt baseret på brugerens skærmstørrelse.
 * **ImageWithFallback**: Wrapper-komponent der falder tilbage til placeholder, hvis billed-URL ikke findes.
 * **SEED Data**: `SeedData`-klasse i Infrastructure initierer databasen med testdata (FlexyBox) på første kørsel.
+* **CI Pipeline** Created an Github Action that automatically test the code of this repo.
 
 ## Optional Enhancements
 

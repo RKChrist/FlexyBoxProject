@@ -11,7 +11,7 @@ Det skal benyttes som en udviklertest for flexybox.
 ## Billede, der beskriver hvordan de skal se ud.
 ![image](https://github.com/user-attachments/assets/815f39d5-4491-483a-9d60-6bc944bb6ee8)
 
-
+Billedet hertil er lavet for 648 bredde skærm, så har skaleret det op ift. ipad og pc-skærm
 ## Arkitektur og Designmønstre
 
 * **Clean Architecture**: Projektet er opdelt i lag (Domain, Application, Infrastructure, WebUI) for at sikre klar adskillelse af ansvar.

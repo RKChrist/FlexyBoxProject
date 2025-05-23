@@ -8,7 +8,7 @@ Dette projekt er en fuldt ud selvkørende applikation med en **Blazor WebAssembl
 Det skal benyttes som en udviklertest for flexybox.
 
 
-## Link til krav omkring features:
+## Billede, der beskriver hvordan de skal se ud.
 ![image](https://github.com/user-attachments/assets/815f39d5-4491-483a-9d60-6bc944bb6ee8)
 
 

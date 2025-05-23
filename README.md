@@ -1,6 +1,6 @@
 # FlexyBox Project
 
-**FlexyBox** is a self-hosted restaurant directory application featuring a Blazor WebAssembly frontend, a .NET Web API backend, and a modular Clean Architecture design. It provides responsive components, offline-ready caching, and an image-fallback mechanism for a seamless user experience.
+**FlexyBox** is a self-hosted restaurant directory application featuring a Blazor WebAssembly frontend, a .NET Web API backend, and a modular Clean Architecture design. It provides responsive components, offline-ready caching, and an image-fallback mechanism for a seamless user experience. Features er beskrevet i et billede, dog er der kun angiven siden for 640 px, så har lavet siden responiv på det faktum.
 
 ## Overblik
 

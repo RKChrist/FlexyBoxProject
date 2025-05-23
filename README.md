@@ -50,9 +50,9 @@ Overvejelser over ekstra krav.
 
 ## Installations- og Kørselinstruktioner
 
-Åbn i visual studio, on upstart it should create a local database with the name flexybox.
+Åbn projektet i Visual Studio. Ved opstart oprettes der automatisk en lokal database med navnet FlexyBox.
 
-ONLY The first resturant adheres 100 % to the design, since everything else is seeded data, to check for errors. (and test closed as well)
+Bemærk: Det er kun den første restaurant, der følger designet 100 %, da de øvrige er seed-data, som primært er til test og fejlhåndtering (bl.a. for at teste "lukket"-visningen).
 
 
 ## Oversigt over Implementerede Features

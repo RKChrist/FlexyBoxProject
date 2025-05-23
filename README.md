@@ -9,7 +9,8 @@ Det skal benyttes som en udviklertest for flexybox.
 
 
 ## Link til krav omkring features:
-https://www.figma.com/design/BPYVMBj1ZgYK2U4gp218HU/Flexybook---DevTest?node-id=1-10282&t=Lod4mSn7BonpPL63-4
+![image](https://github.com/user-attachments/assets/815f39d5-4491-483a-9d60-6bc944bb6ee8)
+
 
 ## Arkitektur og Designmønstre
 

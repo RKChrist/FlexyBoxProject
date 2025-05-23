@@ -4,28 +4,30 @@
 
 ## Overblik
 
-Dette projekt er en fuldt ud selvkørende applikation med en **Blazor WebAssembly** frontend og en **.NET Web API** backend. Det er struktureret efter **Clean Architecture** principper for at sikre høj grad af adskillelse, testbarhed og genbrugelighed.
+Dette projekt er en fuldt ud selvkÃ¸rende applikation med en **Blazor WebAssembly** frontend og en **.NET Web API** backend. Det er struktureret efter **Clean Architecture** principper for at sikre hÃ¸j grad af adskillelse, testbarhed og genbrugelighed.^
+Det skal benyttes som en udviklertest for flexybox.
+
 
 ## Link til krav omkring features:
 https://www.figma.com/design/BPYVMBj1ZgYK2U4gp218HU/Flexybook---DevTest?node-id=1-10282&t=Lod4mSn7BonpPL63-4
 
-## Arkitektur og Designmønstre
+## Arkitektur og DesignmÃ¸nstre
 
-* **Clean Architecture**: Projektet er opdelt i layers (Domain, Application, Infrastructure, WebUI) for at sikre klar adskillelse af ansvar.
-* **MediatR & CQRS**: Anvendt i Application-laget for at håndtere forespørgsler (Queries) og kommandoer (Commands) på en ensartet måde.
+* **Clean Architecture**: Projektet er opdelt i lag (Domain, Application, Infrastructure, WebUI) for at sikre klar adskillelse af ansvar.
+* **MediatR & CQRS**: Anvendt i Application-laget & Presentationslaget for at hÃ¥ndtere forespÃ¸rgsler (Queries) sendt fra presentationslaget og kommandoer (Commands) pÃ¥ en ensartet mÃ¥de.
 * **Generic Repository & Unit of Work**: I Infrastructure-laget for at standardisere dataadgang og sikre atomare transaktioner.
-* **Dependency Injection**: Konfigureret i både API og Blazor for at give løs kobling.
+* **Dependency Injection**: Konfigureret i bÃ¥de API og Blazor for at give lÃ¸s kobling.
 
 ## Funktioner
 
 * **Restaurationsliste**: kortbaserede visninger med navigation til detaljer.
-* **Detaljevisning**: Visning af ét enkelt `ResturantDTO` via rute `restaurant/{id}`.
-* **Favorit-tilføjelse**: Gemmer brugers favorit-restauranter i `localStorage` med userId og likedRestaurants.
-* **StatusToggle**: Åben/lukket-knap bunden til DTO’s `Open`-property.
+* **Detaljevisning**: Visning af Ã©t enkelt `ResturantDTO` via rute `restaurant/{id}`.
+* **Favorit-tilfÃ¸jelse**: Gemmer brugers favorit-restauranter i `localStorage` med userId og likedRestaurants.
+* **StatusToggle**: Ã…ben/lukket-knap bunden til DTOâ€™s `Open`-property.
 * **ActionBtns**: Konsistente genbrugelige knapper (telefon, e-mail, audio guide).
-* **Responsive design**: Siden justerer automatisk font og layout responsivt baseret på brugerens skærmstørrelse.
+* **Responsive design**: Siden justerer automatisk font og layout responsivt baseret pÃ¥ brugerens skÃ¦rmstÃ¸rrelse.
 * **ImageWithFallback**: Wrapper-komponent der falder tilbage til placeholder, hvis billed-URL ikke findes.
-* **SEED Data**: `SeedData`-klasse i Infrastructure initierer databasen med testdata (FlexyBox) på første kørsel.
+* **SEED Data**: `SeedData`-klasse i Infrastructure initierer databasen med testdata (FlexyBox) pÃ¥ fÃ¸rste kÃ¸rsel.
 * **CI Pipeline** Created an Github Action that automatically test the code of this repo.
 
 ## Optional Enhancements
@@ -34,12 +36,12 @@ Overvejelser over ekstra krav.
 
 * Brugerautentificering og -autorisation (Azure AD, IdentityServer).
 * Filuploads for restaurationsbilleder.
-* Avanceret filtrering og søgning på restauranter.
+* Avanceret filtrering og sÃ¸gning pÃ¥ restauranter.
 * Dark mode eller tema-skift.
 
-## Installations- og Kørselinstruktioner
+## Installations- og KÃ¸rselinstruktioner
 
-Åbn i visual studio, on upstart it should create a local database with the name flexybox.
+Ã…bn i visual studio, on upstart it should create a local database with the name flexybox.
 
 ONLY The first resturant adheres 100 % to the design, since everything else is seeded data, to check for errors. (and test closed as well)
 
@@ -51,16 +53,16 @@ ONLY The first resturant adheres 100 % to the design, since everything else is s
 | Clean Architecture       | Layers for Domain, Application, Infrastructure |
 | MediatR & CQRS           | Queries & Commands pattern                     |
 | Generic Repository + UoW | Data access abstraction                        |
-| Favorit-håndtering       | `localStorage` persistence                     |
+| Favorit-hÃ¥ndtering       | `localStorage` persistence                     |
 | Responsiv billedslider   | Auto-play + swipe/key navigation               |
 | Genbrugelige Komponenten | Card, Accordion, StatusToggle, ActionBtns      |
 | SeedData                 | Automatisk databaseinitialisering              |
-| ImageWithFallback        | Håndtering af manglende billeder               |
+| ImageWithFallback        | HÃ¥ndtering af manglende billeder               |
 
-## Yderligere Bemærkninger
+## Yderligere BemÃ¦rkninger
 
 * Projektet er sat op med **Strict Null-Checks** og **C# 10**
-* **Blazor WebAssembly** kombineret med **.NET 6** giver både klient- og serverkode i samme løsning.
+* **Blazor WebAssembly** kombineret med **.NET 6** giver bÃ¥de klient- og serverkode i samme lÃ¸sning.
 * CSS anvender **CSS Variables** for nemt tema/bytte af farver.
 * JS-interops er minimalt og indkapslet i `slider.js` for bedre performance.
 

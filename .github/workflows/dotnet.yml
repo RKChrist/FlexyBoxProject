@@ -16,13 +16,31 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'  # or specify your SDK version
+          dotnet-version: '6.0.x' # or your target SDK
 
-      - name: Restore solution
-        run: dotnet restore FlexyBoxProject.sln
+      - name: Restore all C# projects
+        run: |
+          dotnet restore Domain/Domain.csproj
+          dotnet restore Shared/Shared.csproj
+          dotnet restore Application/Application.csproj
+          dotnet restore Infrastructure/Infrastructure.csproj
+          dotnet restore FlexyBoxProject/FlexyBoxProject.Client/FlexyBoxProject.Client.csproj
+          dotnet restore FlexyBoxProject/FlexyBoxProject/FlexyBoxProject.csproj
 
-      - name: Build solution
-        run: dotnet build FlexyBoxProject.sln --no-restore --configuration Release
+      - name: Build Domain
+        run: dotnet build Domain/Domain.csproj --no-restore --configuration Release
 
-      - name: Run Web API
-        run: dotnet run --project FlexyBoxProject/FlexyBoxProject/FlexyBoxProject.csproj --no-build --configuration Release
+      - name: Build Shared
+        run: dotnet build Shared/Shared.csproj --no-restore --configuration Release
+
+      - name: Build Application
+        run: dotnet build Application/Application.csproj --no-restore --configuration Release
+
+      - name: Build Infrastructure
+        run: dotnet build Infrastructure/Infrastructure.csproj --no-restore --configuration Release
+
+      - name: Build Blazor Client
+        run: dotnet build  FlexyBoxProject/FlexyBoxProject.Client/FlexyBoxProject.Client.csproj --no-restore --configuration Release
+
+      - name: Build Blazor Server
+        run: dotnet build FlexyBoxProject/FlexyBoxProject/FlexyBoxProject.csproj --no-restore --configuration Release

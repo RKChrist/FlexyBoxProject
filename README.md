@@ -20,7 +20,7 @@ https://www.figma.com/design/BPYVMBj1ZgYK2U4gp218HU/Flexybook---DevTest?node-id=
 
 ## Funktioner
 
-* **Restaurationsliste**: kortbaserede visninger med navigation til detaljer.
+* **Restaurationsliste**: kortbaserede visninger med navigation til detaljer via "/".
 * **Detaljevisning**: Visning af ét enkelt `ResturantDTO` via rute `restaurant/{id}`.
 * **Favorit-tilføjelse**: Gemmer brugers favorit-restauranter i `localStorage` med userId og likedRestaurants.
 * **StatusToggle**: Åben/lukket-knap bunden til DTO’s `Open`-property.

@@ -1,10 +1,14 @@
-﻿CREATE TABLE [dbo].[Openings]
-(
-	[Id] INT NOT NULL PRIMARY KEY Identity(1,1),
-	[Name] VARCHAR(50) NULL, 
-    [Toggled] BIT NULL,
-	[ResturantId] INT NULL
+﻿CREATE TABLE [dbo].[Openings] (
+    [Id]          INT            IDENTITY (1, 1) NOT NULL,
+    [Name]        NVARCHAR (MAX) NOT NULL,
+    [Toggled]     BIT            NOT NULL,
+    [ResturantId] INT            NOT NULL,
+    CONSTRAINT [PK_Openings] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Openings_Resturants_ResturantId] FOREIGN KEY ([ResturantId]) REFERENCES [dbo].[Resturants] ([Id]) ON DELETE CASCADE
+);
 
-    CONSTRAINT FK_ResturantOpeningHours Foreign Key  ([ResturantId])  REFERENCES [Resturants](Id)
-    
-)
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Openings_ResturantId]
+    ON [dbo].[Openings]([ResturantId] ASC);
+

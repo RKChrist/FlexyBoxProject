@@ -12,6 +12,13 @@ Det skal benyttes som en udviklertest for flexybox.
 ![image](https://github.com/user-attachments/assets/815f39d5-4491-483a-9d60-6bc944bb6ee8)
 
 Billedet hertil er lavet for 648 bredde skærm, så har skaleret det op ift. ipad og pc-skærm
+
+## Endelig Resultat
+![image](https://github.com/user-attachments/assets/a22fbd20-bad7-402a-86f2-755e80aea0e1)
+![image](https://github.com/user-attachments/assets/ee01c9f7-70c7-452e-939e-5823bb96e877)
+![image](https://github.com/user-attachments/assets/e39941e5-05b1-4428-83c4-15717d4d27f7)
+
+
 ## Arkitektur og Designmønstre
 
 * **Clean Architecture**: Projektet er opdelt i lag (Domain, Application, Infrastructure, WebUI) for at sikre klar adskillelse af ansvar.
@@ -39,6 +46,7 @@ Overvejelser over ekstra krav.
 * Filuploads for restaurationsbilleder.
 * Avanceret filtrering og søgning på restauranter.
 * Dark mode eller tema-skift.
+* 2 billeder på ipad, 3-4 på skærm 
 
 ## Installations- og Kørselinstruktioner
 

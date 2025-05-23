@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x' # or your target SDK
+          dotnet-version: '9.0.x' # or your target SDK
 
       - name: Restore all C# projects
         run: |

@@ -1,23 +1,46 @@
-name: .NET
+name: .NET CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ 'master' ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ 'master' ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x' # or your target SDK
+
+      - name: Restore all C# projects
+        run: |
+          dotnet restore Domain/Domain.csproj
+          dotnet restore Shared/Shared.csproj
+          dotnet restore Application/Application.csproj
+          dotnet restore Infrastructure/Infrastructure.csproj
+          dotnet restore FlexyBoxProject/FlexyBoxProject.Client/FlexyBoxProject.Client.csproj
+          dotnet restore FlexyBoxProject/FlexyBoxProject/FlexyBoxProject.csproj
+
+      - name: Build Domain
+        run: dotnet build Domain/Domain.csproj --no-restore --configuration Release
+
+      - name: Build Shared
+        run: dotnet build Shared/Shared.csproj --no-restore --configuration Release
+
+      - name: Build Application
+        run: dotnet build Application/Application.csproj --no-restore --configuration Release
+
+      - name: Build Infrastructure
+        run: dotnet build Infrastructure/Infrastructure.csproj --no-restore --configuration Release
+
+      - name: Build Blazor Client
+        run: dotnet build  FlexyBoxProject/FlexyBoxProject.Client/FlexyBoxProject.Client.csproj --no-restore --configuration Release
+
+      - name: Build Blazor Server
+        run: dotnet build FlexyBoxProject/FlexyBoxProject/FlexyBoxProject.csproj --no-restore --configuration Release

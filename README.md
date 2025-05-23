@@ -68,11 +68,5 @@ ONLY The first resturant adheres 100 % to the design, since everything else is s
 | SeedData                 | Automatisk databaseinitialisering              |
 | ImageWithFallback        | Håndtering af manglende billeder               |
 
-## Yderligere Bemærkninger
-
-* Projektet er sat op med **Strict Null-Checks** og **C# 10**
-* **Blazor WebAssembly** kombineret med **.NET 6** giver både klient- og serverkode i samme løsning.
-* CSS anvender **CSS Variables** for nemt tema/bytte af farver.
-* JS-interops er minimalt og indkapslet i `slider.js` for bedre performance.
 
 Kontakt mig endelig, hvis noget skal uddybes!

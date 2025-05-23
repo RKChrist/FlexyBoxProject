@@ -1,0 +1,19 @@
+﻿<header class="card__header">
+    @if(NavigateBackEnabled){
+        <div class="flex">
+            <NavLink href="@($"/")">
+                <IconButton IconClass="material-symbols-outlined" Icon="arrow_back_ios" AriaLabel="Arrow back" />
+            </NavLink>
+            <h1>@Title</h1>
+        </div>
+    }
+    else{
+        <h1>@Title</h1>
+    }
+    @ChildContent
+</header>
+@code {
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public bool NavigateBackEnabled { get; set; } = false;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

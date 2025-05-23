@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Shared.DTOs
+
+@if(dTO != null){
+    <div class="status-row">
+        <div id="status" class="status @(Open ? "" : "closed")" aria-live="polite">
+            @Text
+        </div>
+        <div class="address">
+            @dTO.Address, @dTO.PostCode &#8226; @dTO.City
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool Open { get; set; }
+
+    [Parameter]
+    public ResturantDTO? dTO { get; set; }
+
+    private string Text => Open ? "Open" : "Closed";
+}

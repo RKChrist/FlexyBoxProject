@@ -1,0 +1,29 @@
+﻿@if (OnClick.HasDelegate)
+{
+    <a onclick="@(async () => await ClickATag())" class="action-btn" aria-label="@AriaLabel">
+        <span class="@IconClass">
+            @Icon
+        </span>
+    </a>
+}
+else{
+    <div>
+        <span class="@IconClass">
+            @Icon
+        </span>
+    </div>
+}
+@code {
+    [Parameter] public string Icon { get; set; } = "";
+    [Parameter] public string AriaLabel { get; set; } = "";
+    [Parameter] public EventCallback OnClick { get; set; }
+    [Parameter] public string IconClass { get; set; } = "";
+
+
+    private async Task ClickATag(){
+
+        if(OnClick.HasDelegate){
+            await OnClick.InvokeAsync();
+        }
+    }
+}

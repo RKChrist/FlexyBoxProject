@@ -1,0 +1,81 @@
+﻿@using FlexyBoxProject.Client.Services
+@using Shared.DTOs
+@using Shared.ViewModels
+@if(Openings != null && Openings.Any()){
+
+    @if (timeSlotRanges != null && timeSlotRanges.Any())
+    {
+        <section class="hours" aria-labelledby="opening-hours">
+            <h3 id="opening-hours" class="sr-only">Opening hours</h3>
+            <nav class="btns" role="tablist" aria-label="Opening hours categories">
+                @foreach (var tab in Openings)
+                {
+                    <a role="@tab.Name" class="@(tab.Name==Selected ?"active" : "" )" @onclick="()=>Select(tab)" aria-selected="@(tab.Name==Selected)">@tab.Name</a>
+                }
+            </nav>
+            <table>
+                <tbody >
+                    @foreach (var h in timeSlotRanges)
+                    {
+                        var isClosed = h.StartTime == h.EndTime;
+                        <tr>
+                            <th scope="row">
+                                @(h.IsSingleDay
+                                    ? h.StartDay.ToString()
+                                    : $"{h.StartDay} – {h.EndDay}")
+                            </th>
+                            <td class="text-end">
+                                @(
+                                    isClosed
+                                    ? "Closed"
+                                    : $"{h.StartTime:HH.mm} – {h.EndTime:HH.mm}"
+                                    )
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </section>
+    }
+
+}
+@code {
+    [Parameter] public required IEnumerable<OpeningsDTO>? Openings { get; set; }
+    [Parameter] public IEnumerable<TimeSlotRange>? timeSlotRanges { get; set; }
+    private string Selected { get; set; } = string.Empty;
+    private int SelectedId { get; set; } 
+    protected override void OnInitialized() 
+    {
+        var opening = (Openings != null && Openings.FirstOrDefault() != default) ? Openings.FirstOrDefault(): null;
+        if(opening == null){
+
+        }
+        else{
+            Selected = opening.Name;
+            SelectedId = opening.Id;
+            if (opening.Days != null)
+            {
+                GetTimeslotRange(opening.Days);
+            }
+        }
+
+
+    }
+    private void Select(OpeningsDTO openings)
+    {
+        Selected = openings.Name;
+        SelectedId = openings.Id;
+        if (openings.Days != null)
+        {
+            GetTimeslotRange(openings.Days);
+        }
+
+    }
+
+
+    private void GetTimeslotRange(IEnumerable<DaysDTO> slots){
+        timeSlotRanges = TimeSlotHelper.GetTimeSlotRanges(slots);
+        StateHasChanged();
+    }
+}

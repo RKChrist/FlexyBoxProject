@@ -1,0 +1,51 @@
+﻿@using Shared.DTOs
+@page "/restaurant/{Id:int}"
+
+@if (ResturantDTO != null)
+{
+    <Card>
+        
+        <CardHeader NavigateBackEnabled="true" Title="@ResturantDTO.Name">
+
+            @if (Liked)
+            {
+                <IconButton IconClass="material-symbols" Icon="favorite" AriaLabel="Unlike this restaurant" Onclick="ToggleFavorite" />
+            }
+            else
+            {
+                <IconButton Icon="favorite" IconClass="material-symbols-outlined" AriaLabel="Like this restaurant" Onclick="ToggleFavorite" />
+            }
+
+        </CardHeader>
+
+        <StatusToggle dTO="ResturantDTO" Open="ResturantDTO.Open" />
+
+        <ActionBtns DTO="@ResturantDTO"></ActionBtns>
+
+        <ImageSlider Images="ResturantDTO.Images" Interval="ResturantDTO.SliderInterval" />
+
+        <OpeningHours Openings="ResturantDTO.Openings" />
+    </Card>
+}
+
+@code {
+    private string? UserId;
+    private HashSet<int> LikedRestaurants = new();
+
+
+    private async Task ToggleFavorite()
+    {
+        ResturantDTO.Liked = !ResturantDTO.Liked;
+        Liked = !Liked;
+        if (ResturantDTO.Liked)
+            LikedRestaurants.Add(ResturantDTO.Id);
+        else
+            LikedRestaurants.Remove(ResturantDTO.Id);
+
+        // persist out to localStorage
+        var json = JsonSerializer.Serialize(LikedRestaurants);
+        await JS.InvokeVoidAsync("localStorage.setItem", "likedRestaurants", json);
+
+        StateHasChanged();
+    }
+}

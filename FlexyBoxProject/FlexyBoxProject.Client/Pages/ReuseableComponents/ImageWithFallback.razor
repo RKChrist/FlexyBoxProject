@@ -1,0 +1,42 @@
+@if (_isImageLoaded)
+{
+    <img src="@Src" alt="@Alt" class="@Class" />
+}
+else
+{
+    <img src="@FallbackImage" alt="@Alt" class="@Class" />
+}
+
+@code {
+
+    [Parameter] public required string Src { get; set; }
+
+    [Parameter] public string FallbackImage { get; set; } = "/Images/placeholder.png";
+    [Parameter] public string Alt { get; set; } = "";
+
+    [Parameter] public int HttpClientTimeout { get; set; } = 2;
+
+    [Parameter] public string Class { get; set; } = "";
+
+    private bool _isImageLoaded;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isImageLoaded = await CheckImageAvailabilityAsync(Src);
+
+    }
+    private async Task<bool> CheckImageAvailabilityAsync(string url)
+    {
+        try
+        {
+            using var httpClient = new HttpClient();
+            httpClient.Timeout = TimeSpan.FromSeconds(HttpClientTimeout);
+            var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+            return response.IsSuccessStatusCode && response.Content.Headers.ContentType?.MediaType.Contains("image") == true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+﻿@using Shared.ViewModels
+
+<ul class="contact" aria-label="Contact information">
+    @foreach (var c in Contacts)
+    {
+        <li class="contact__item mobile-hide">
+            <span aria-hidden="true">@c.Icon</span>
+            <a href="@c.Url" aria-label="@c.Arialabel">@c.Text</a>
+        </li>
+    }
+</ul>
+@code {
+    [Parameter] public IEnumerable<ContactItem> Contacts { get; set; } = Enumerable.Empty<ContactItem>();
+}

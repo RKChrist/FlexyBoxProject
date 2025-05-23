@@ -1,0 +1,79 @@
+﻿@page "/"
+@using Shared.DTOs
+
+@if (!_initialized)
+{
+    <p>Loading restaurants...</p>
+}
+else if (Restaurants != null && Restaurants.Any())
+{
+    @foreach (var r in Restaurants)
+    {
+        <div style="margin-bottom: 30px;">
+            <NavLink class="card-link" href="@($"/restaurant/{r.Id}")">
+                <Card>
+                    <CardHeader Title="@r.Name">
+                        @if (r.Liked)
+                        {
+                            <IconButton IconClass="material-symbols" Icon="favorite" AriaLabel="Unlike restaurant" />
+                        }
+                        else
+                        {
+                            <IconButton IconClass="material-symbols-outlined" Icon="favorite_border" AriaLabel="Like restaurant" />
+                        }
+                    </CardHeader>
+                    <StatusToggle dTO="@r" Open="r.Open" />
+                    <ActionBtns DTO="@r" />
+                </Card>
+            </NavLink>
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<ResturantDTO>? Restaurants { get; set; }
+
+    private HashSet<int> LikedRestaurants = new();
+    private bool _initialized;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Restaurants = await Client.GetRestaurantsAsync();
+            Restaurants.OrderBy(x => x.Id);
+
+            var UserId = User.Id;
+            if (string.IsNullOrEmpty(UserId.ToString()))
+            {
+                await JS.InvokeVoidAsync("localStorage.setItem", "userId", UserId);
+            }
+            var likedJson = await JS.InvokeAsync<string>("localStorage.getItem", "likedRestaurants");
+            if (!string.IsNullOrEmpty(likedJson))
+            {
+                try
+                {
+                    var list = JsonSerializer.Deserialize<List<int>>(likedJson);
+                    if (list != null) LikedRestaurants = list.ToHashSet();
+                }
+                catch { }
+            }
+
+            if (Restaurants != null && Restaurants.Any() && LikedRestaurants.Any())
+            {
+                foreach (var item in Restaurants)
+                {
+                    if (LikedRestaurants.Contains(item.Id))
+                    {
+                        item.Liked = true;
+                    }
+                }
+            }
+            _initialized = true;
+
+
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}

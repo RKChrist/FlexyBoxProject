@@ -1,0 +1,26 @@
+﻿@using Shared.DTOs
+<div class="action-buttons">
+    <a class="action-btn">
+        <span class="material-symbols-outlined icon-green">
+            phone_iphone
+        </span>
+        <span class="label"> @DTO.TelefonNumber</span>
+    </a>
+    <a class="action-btn">
+        <span class="material-symbols-outlined icon-green">
+            alternate_email
+        </span>
+        <span class="label">@DTO.Email</span>
+    </a>
+    <a href="#" class="action-btn">
+        <span class="material-symbols-outlined icon-green">
+            headphones
+        </span>
+    </a>
+</div>
+
+
+@code{
+    [Parameter]
+    public required ResturantDTO DTO { get; set; }
+}

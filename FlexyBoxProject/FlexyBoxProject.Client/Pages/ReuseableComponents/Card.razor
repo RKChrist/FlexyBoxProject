@@ -1,0 +1,9 @@
+﻿<article role="region" aria-label="Restaurant details"  class="card">
+    <div class="card__inner">
+
+        @ChildContent
+    </div>
+</article>
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

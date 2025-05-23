@@ -1,4 +1,4 @@
-# FlexyBox Project
+# FlexyBox Developer Test Project
 
 FlexyBox er en selvhostet restaurant-oversigtsapplikation med en Blazor WebAssembly-frontend, en .NET Web API-backend og et modulært design baseret på Clean Architecture. Applikationen indeholder responsive komponenter, caching der fungerer offline, og en fallback-løsning til billeder for at sikre en problemfri brugeroplevelse. Funktionerne er beskrevet i et billede, men da designet kun var vist i en bredde på 640 px, har jeg gjort siden responsiv ud fra det.
 
